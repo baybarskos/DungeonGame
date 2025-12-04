@@ -37,7 +37,7 @@ public static void startCombat(Player player, Monster monster){
 				int damageDealt=(int)((player.attackPower)*((((Math.random()*41)+80)/100)));
 				if(Math.random()<0.1){
 					damageDealt*=2; System.out.println("CRITICAL HIT!");}
-				if(dragonBreath) damageDealt*=3;
+				if(dragonBreath) damageDealt*=2;
 				damageDealt*=lepriconCauldron;
 				lepriconCauldron=1;
 				monster.takeDamage(damageDealt);
@@ -79,6 +79,7 @@ public static void startCombat(Player player, Monster monster){
 				break;
 			case 'S':
 				if(hasSpecial){
+					System.out.println("----------------------");
 					System.out.println("Fire Lepricons Cauldron");
 					System.out.println("All positive luck has been doubled for next round!");
 					System.out.println("Can be paired with Dragon's breath for quadruple damage!");
@@ -145,6 +146,7 @@ public static void main(String[] args){
 			Treasure treasure=(Treasure) currentRoom;//with this (Treasure) we tell Java that currentRoom is actually a Treasure so we can use .getTreasure
 			String item=treasure.getTreasure();
 			System.out.println("You found "+item+" in a volcano nearby!");
+			treasure.treasureDescription(item);
 			for(int j=2;j<player.inventory.length;j++){
 					System.out.println(player.inventory[j]);}
 			System.out.println("Where do you want to put it in your inventory (1-2-3)");

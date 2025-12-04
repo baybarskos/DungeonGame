@@ -34,12 +34,14 @@ public class Player {
 	}
 
 	public void printStatus() {
+		System.out.println("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
 		System.out.println(
 				"Player " + name + "'s health is" + currentHealth + "/" + maxHealth + ".\nYour inventory is: ");
 		for (int i = 0; i < inventory.length; i++) {
-			System.out.print(inventory[i] + " ");
+			System.out.print(inventory[i] + "---");
 		}
 		System.out.println("");
+		System.out.println("_____________________________________________________________________________");
 	}
 
 	public void endStatus() {
