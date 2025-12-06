@@ -3,7 +3,7 @@ public class MonsterFactory {
 		Monster monster;
 		switch (type.toUpperCase()) {
 		case "TUKILETTU":
-			monster = new Monster("Tukilettu", 30, 10, false);
+			monster = new Monster("Tukilettu", 30, 5, false);
 			monster.isTukilettu = true;
 			return monster;
 		case "PHOENIX":

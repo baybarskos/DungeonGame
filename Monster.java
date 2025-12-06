@@ -39,7 +39,7 @@ public class Monster {
 			System.out.println("");
 		}
 		if (isTukilettu) {
-			System.out.println("Fire Fox Tukkilettu");
+			System.out.println("Fire Fox Tukkilettu (Dandirik)");
 			System.out.println("Ability Type: Active");
 			System.out.println("//THIEF FOR LIFE//");
 			System.out.println("   _,-='\"-.__               /\\_/\\\n   `-.}       `=._,.-==-._.,  @ @._,\n      `-.__   _,-.   )       _,.-'\n           `\"     G..m-\"^m`m'");

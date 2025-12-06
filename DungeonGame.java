@@ -5,66 +5,78 @@ static Scanner input=new Scanner(System.in);
 static public boolean gameWon=false;
 static int playerRow=0; static int playerCol=0;
 static RoomContent[][] dungeonMap= new RoomContent[4][4];
+static char[][] room = new char[4][4];
 static Player player;
 static boolean dragonBreath=false;
 static boolean hasSpecial=true;
 public static int totalMonster=0;
 static int lepriconCauldron=1;
-public static void dungeonMapDraftOne(){
-	for(int i=0;i<4;i++){
-	for(int j=0; j<4;j++){
-		if((i+j)==6){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("DRAGON"));//33
-		totalMonster++;}
-		else if((2*i+j)==3||(i+3*j)==9){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("PHOENIX"));//11 03 32
-		totalMonster++;}
-		else if((2*i+j)==4||(2*i+j)==6){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("TUKILETTU"));//12 20 22 30
-		totalMonster++;}
-		else if((2*i+j)==2||(2*i+j)==7)dungeonMap[i][j]=new Treasure("Healing Potion");//10 02 23 31
-		else if((2*i+j)==5)dungeonMap[i][j]=new Treasure("Ignis's Hair");//13 21
-		else if((i+j)==1)dungeonMap[i][j]=new Treasure("Dragon's Breath");//01 10
-		else dungeonMap[i][j]=new EmptyRoom();}}}
-public static void dungeonMapDraftTwo(){
-	for(int i=0;i<4;i++){
-	for(int j=0; j<4;j++){
-		if((i+j)==6){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("DRAGON"));//33
-		totalMonster++;}
-		else if((i+j)==3){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("PHOENIX"));//11 02 20
-		totalMonster++;}
-		else if((i+j)==4){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("TUKILETTU"));//13 22 31
-		totalMonster++;}
-		else if((i+j)==2)dungeonMap[i][j]=new Treasure("Healing Potion");//30 21 12 03
-		else if((i+j)==1)dungeonMap[i][j]=new Treasure("Ignis's Hair");//23 32
-		else if((i+j)==5)dungeonMap[i][j]=new Treasure("Dragon's Breath");//01 10
-		else dungeonMap[i][j]=new EmptyRoom();}}}
-public static void dungeonMapDraftThree(){
-	for(int i=0;i<4;i++){
-	for(int j=0; j<4;j++){
-		if((i+j)==6){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("DRAGON"));//33
-		totalMonster++;}
-		else if((i+2*j)==3||(i+3*j)==9){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("PHOENIX"));//11 30 32 03
-		totalMonster++;}
-		else if((i+2*j)==4||(2*i+j)==6){dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("TUKILETTU"));//21 22 30
-		totalMonster++;}
-		else if((i+3*j)==2||(2*i+j)==7)dungeonMap[i][j]=new Treasure("Healing Potion");//20
-		else if((i+2*j)==5)dungeonMap[i][j]=new Treasure("Ignis's Hair");//31
-		else if((i+j)==1)dungeonMap[i][j]=new Treasure("Dragon's Breath");//01 10
-		else dungeonMap[i][j]=new EmptyRoom();}}}
-public static void dungeonMapDraftFour(){
-	dungeonMap[3][3]=new MonsterEncounter(MonsterFactory.createMonster("DRAGON"));
-	dungeonMap[0][1]=new MonsterEncounter(MonsterFactory.createMonster("PHOENIX")); dungeonMap[2][2]=new MonsterEncounter(MonsterFactory.createMonster("PHOENIX"));
-	dungeonMap[0][3]=new MonsterEncounter(MonsterFactory.createMonster("PHOENIX")); dungeonMap[2][0]=new MonsterEncounter(MonsterFactory.createMonster("TUKILETTU"));
-	dungeonMap[1][0]=new MonsterEncounter(MonsterFactory.createMonster("TUKILETTU")); dungeonMap[2][3]=new MonsterEncounter(MonsterFactory.createMonster("TUKILETTU"));
-	dungeonMap[1][3]=new MonsterEncounter(MonsterFactory.createMonster("PHOENIX"));
-	dungeonMap[1][1]=new Treasure("Healing Potion"); dungeonMap[3][1]=new Treasure("Healing Potion"); dungeonMap[2][1]=new Treasure("Healing Potion");
-	dungeonMap[1][2]=new Treasure("Ignis's Hair"); dungeonMap[3][2]=new Treasure("Ignis's Hair");
-	dungeonMap[3][1]=new Treasure("Dragon's Breath"); dungeonMap[0][2]=new Treasure("Dragon's Breath");
-	totalMonster=8;
-	}
+public static void dungeonMap(){
+for(int i=0; i<room.length;i++){
+    for(int j=0; j<room[i].length; j++){
+        if(room[i][j]=='D'){
+            dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("DRAGON"));
+        }
+        else if(room[i][j]=='P'){
+            dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("PHOENIX"));
+        }
+        else if(room[i][j]=='T'){
+            dungeonMap[i][j]=new MonsterEncounter(MonsterFactory.createMonster("TUKILETTU"));
+        }
+        else if(room[i][j]=='H'){
+            dungeonMap[i][j]=new Treasure("Healing Potion");
+        }
+        else if(room[i][j]=='I'){
+            dungeonMap[i][j]=new Treasure("Ignis's Hair");
+        }
+    }
+}
+}
+
 public static void createDungeonMap(){//I used these i+j sums to make it appear more randomized and make player see every possible room beforre going ing figth with the dragon
-if(Math.random()<0.25) dungeonMapDraftOne();
-else if(Math.random()<0.50) dungeonMapDraftTwo();
-else if(Math.random()<0.75) dungeonMapDraftThree();
-else dungeonMapDraftFour();}
+    char[][] room1 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    char[][] room2 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    char[][] room3 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    char[][] room4 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    char[][] room5 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    char[][] room6 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    char[][] room7 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    char[][] room9 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    char[][] room8 = {{'D','P','H','T'},{'H','T','I','T'},{'I','T','P','H'},{'P','H'}};
+    switch(((int)Math.random()*9)+1){
+        case 1:
+            room=room1;
+            break;
+        case 2:
+            room=room2;
+            break;
+        case 3:
+            room=room3;
+            break;
+        case 4:
+            room=room4;
+            break;
+        case 5:
+            room=room5;
+            break;
+        case 6:
+            room=room6;
+            break;
+        case 7:
+            room=room7;
+            break;
+        case 8:
+            room=room8;
+            break;
+        case 9:
+            room=room9;
+            break;
+		default:
+			room = room1;
+    }
+    dungeonMap();
+}
+
 public static void startCombat(Player player, Monster monster){
 	monster.monsterGreeting();
 	player.printStatus();
@@ -132,7 +144,9 @@ public static void startCombat(Player player, Monster monster){
 				System.out.println("You hesitate and you failed");
 				break;}
 		monster.printStatus();
-		if(monster.health>0||monster.hasSpecialSpecial){
+		if(monster.health==0&&monster.hasSpecialSpecial){
+		monster.performSpecialAction(player);}
+		if(monster.health>0){
 		System.out.println("Now it is "+monster.name+"'s turn");//monster turn start
 		monster.performSpecialAction(player);
 		int damageDealt=(int)(monster.damage);
