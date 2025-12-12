@@ -95,7 +95,7 @@ public static void startCombat(Player player, Monster monster){
 					for(int j=2;j<player.inventory.length;j++){
 					System.out.println(player.inventory[j]);}
 					System.out.println("Write 1-2-3 for your liking");
-						char newChoiceString=input.nextLine().charAt(0);
+						char newChoiceString=input.next().charAt(0);
 						int newChoice=newChoiceString-'0';
 						newChoice++;//I chose to handle the miscalenous inventory this way to make it easy for the player to prompt input
 						if((1>newChoice||newChoice>4)) break;
